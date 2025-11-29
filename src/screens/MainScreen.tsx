@@ -1,4 +1,3 @@
-// File: `A2_jen_henry_faraz_safdar/src/screens/MainScreen.tsx`
 import React, {useState} from 'react';
 import {
   View,
@@ -154,13 +153,36 @@ const MainScreen: React.FC<MainScreenProps> = ({navigation}) => {
           )}
         </TouchableOpacity>
 
-        {/*
+        {error !== '' && (
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
+        )}
 
-        */}
+        {result && (
+          <View style={styles.resultContainer}>
+            <Text style={styles.resultTitle}>Conversion Result</Text>
+            <Text style={styles.resultText}>
+              {amount} {baseCurrency} = {result.convertedAmount} {destCurrency}
+            </Text>
+            <Text style={styles.rateText}>
+              Exchange Rate: 1 {baseCurrency} = {result.exchangeRate} {destCurrency}
+            </Text>
+          </View>
+        )}
+
+        <TouchableOpacity
+          style={styles.aboutButton}
+          onPress={() => navigation.navigate('About')}>
+          <Text style={styles.aboutButtonText}>About This App</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
+
+
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -192,10 +214,57 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-
-  /*
-
-  */
+  errorContainer: {
+    backgroundColor: '#FFEBEE',
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 16,
+    borderLeftWidth: 4,
+    borderLeftColor: '#F44336',
+  },
+  errorText: {
+    color: '#C62828',
+    fontSize: 14,
+  },
+  resultContainer: {
+    backgroundColor: '#E8F5E9',
+    padding: 16,
+    borderRadius: 8,
+    marginTop: 16,
+    borderLeftWidth: 4,
+    borderLeftColor: '#4CAF50',
+  },
+  resultTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#2E7D32',
+    marginBottom: 8,
+  },
+  resultText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#1B5E20',
+    marginBottom: 8,
+  },
+  rateText: {
+    fontSize: 14,
+    color: '#388E3C',
+  },
+  aboutButton: {
+    backgroundColor: '#fff',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 24,
+    borderWidth: 1,
+    borderColor: '#2196F3',
+  },
+  aboutButtonText: {
+    color: '#2196F3',
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });
+
 
 export default MainScreen;
