@@ -1,3 +1,4 @@
+// File: `A2_jen_henry_faraz_safdar/src/screens/MainScreen.tsx`
 import React, {useState} from 'react';
 import {
   View,
@@ -161,8 +162,40 @@ const MainScreen: React.FC<MainScreenProps> = ({navigation}) => {
   );
 };
 
-/*
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  content: {
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#2196F3',
+    marginBottom: 24,
+    textAlign: 'center',
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    padding: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  buttonDisabled: {
+    backgroundColor: '#90CAF9',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 
-*/
+  /*
+
+  */
+});
 
 export default MainScreen;
