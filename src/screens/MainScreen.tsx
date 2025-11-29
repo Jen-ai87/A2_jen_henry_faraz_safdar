@@ -134,6 +134,25 @@ const MainScreen: React.FC<MainScreenProps> = ({navigation}) => {
           autoCapitalize="characters"
         />
 
+        <LabeledInput
+          label="Amount"
+          value={amount}
+          onChangeText={setAmount}
+          placeholder="Enter amount"
+          keyboardType="numeric"
+        />
+
+        <TouchableOpacity
+          style={[styles.button, loading && styles.buttonDisabled]}
+          onPress={handleConvert}
+          disabled={loading}>
+          {loading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text style={styles.buttonText}>Convert</Text>
+          )}
+        </TouchableOpacity>
+
         {/*
 
         */}
