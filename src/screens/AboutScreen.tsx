@@ -7,7 +7,7 @@ const AboutScreen: React.FC = () => {
       <View style={styles.card}>
         <Text style={styles.title}>About</Text>
 
-        {/* Team section — already added */}
+        {/* Team section */}
         <View style={styles.teamSection}>
           <Text style={styles.groupTitle}>Group 10</Text>
 
@@ -32,8 +32,8 @@ const AboutScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* App info — added in this commit */}
-        <View style={styles.card}>
+        {/* App info */}
+        <View style={styles.infoCard}>
           <Text style={styles.sectionTitle}>About This Application</Text>
           <Text style={styles.description}>
             This Currency Converter app allows users to convert amounts between different currencies using real-time exchange rates from the Free Currency API.
@@ -47,9 +47,11 @@ const AboutScreen: React.FC = () => {
           <Text style={styles.feature}>• Clean and intuitive user interface</Text>
         </View>
 
-        {/* Footer placeholder */}
-        <View style={styles.section}>
-          <Text style={styles.placeholder}>Footer placeholder</Text>
+        {/* Footer — updated in this commit */}
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Version 1.0.0</Text>
+          <Text style={styles.footerText}>© 2025 Group 10</Text>
+          <Text style={styles.footerNote}>Contact: faraz.safdar@example.com</Text>
         </View>
       </View>
     </ScrollView>
@@ -81,13 +83,26 @@ const styles = StyleSheet.create({
   divider: { height: 1, backgroundColor: '#e0e0e0', marginVertical: 12 },
 
   /* App info styles */
+  infoCard: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
+  },
   sectionTitle: { fontSize: 20, fontWeight: '700', color: '#333', marginBottom: 12 },
-  description: { fontSize: 15, color: '#555', lineHeight: 22, marginBottom: 12 },
-  feature: { fontSize: 14, color: '#666', lineHeight: 24, marginLeft: 8 },
+  description: { fontSize: 15, color: '#555', lineHeight: 22, marginBottom: 8 },
+  feature: { fontSize: 14, color: '#666', lineHeight: 22, marginLeft: 8 },
 
-  /* footer / placeholders */
-  section: { marginBottom: 12 },
-  placeholder: { fontSize: 14, color: '#666' },
+  /* Footer styles */
+  footer: {
+    borderTopWidth: 1,
+    borderTopColor: '#e0e0e0',
+    paddingTop: 12,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  footerText: { fontSize: 13, color: '#777' },
+  footerNote: { fontSize: 12, color: '#999', marginTop: 4, fontStyle: 'italic' },
 });
 
 export default AboutScreen;
