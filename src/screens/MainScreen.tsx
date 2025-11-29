@@ -113,7 +113,37 @@ const MainScreen: React.FC<MainScreenProps> = ({navigation}) => {
     }
   };
 
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.title}>Convert Your Currency</Text>
+
+        <LabeledInput
+          label="Base Currency Code"
+          value={baseCurrency}
+          onChangeText={setBaseCurrency}
+          placeholder="e.g., CAD, USD, EUR"
+          autoCapitalize="characters"
+        />
+
+        <LabeledInput
+          label="Destination Currency Code"
+          value={destCurrency}
+          onChangeText={setDestCurrency}
+          placeholder="e.g., USD, EUR, GBP"
+          autoCapitalize="characters"
+        />
+
+        {/*
+
+        */}
+      </View>
+    </ScrollView>
+  );
 };
 
+/*
+
+*/
 
 export default MainScreen;
