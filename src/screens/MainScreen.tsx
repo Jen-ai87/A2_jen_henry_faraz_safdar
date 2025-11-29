@@ -42,6 +42,77 @@ const MainScreen: React.FC<MainScreenProps> = ({navigation}) => {
     return !isNaN(num) && num > 0;
   };
 
+  const handleConvert = async () => {
+    setError('');
+    setResult(null);
+
+    // Validate inputs
+    if (!validateCurrencyCode(baseCurrency)) {
+      setError('Base currency must be a 3-letter uppercase ISO code (e.g., CAD, USD)');
+      return;
+    }
+
+    if (!validateCurrencyCode(destCurrency)) {
+      setError('Destination currency must be a 3-letter uppercase ISO code (e.g., USD, EUR)');
+      return;
+    }
+
+    if (!validateAmount(amount)) {
+      setError('Amount must be a positive number');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        `${API_URL}?apikey=${API_KEY}&base_currency=${baseCurrency}&currencies=${destCurrency}`,
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Check for API errors
+      if (data.error || data.errors) {
+        throw new Error(data.error?.message || 'API returned an error');
+      }
+
+      // Validate response structure
+      if (!data.data || !data.data[destCurrency]) {
+        throw new Error(`Exchange rate not found for ${destCurrency}`);
+      }
+
+      const exchangeRate = data.data[destCurrency];
+      const amountNum = parseFloat(amount);
+      const convertedAmount = (amountNum * exchangeRate).toFixed(2);
+
+      setResult({
+        convertedAmount,
+        exchangeRate: exchangeRate.toFixed(4),
+      });
+    } catch (err: any) {
+      let errorMessage = 'Failed to fetch exchange rate';
+
+      if (err.message.includes('Network request failed')) {
+        errorMessage = 'Network error. Please check your internet connection.';
+      } else if (err.message.includes('Invalid API key')) {
+        errorMessage = 'Invalid API key. Please check configuration.';
+      } else if (err.message.includes('not found')) {
+        errorMessage = `Currency ${destCurrency} not found or not supported.`;
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+
+      setError(errorMessage);
+      Alert.alert('Error', errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 };
 
 
