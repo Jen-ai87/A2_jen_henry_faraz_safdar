@@ -1,7 +1,25 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import React, { useCallback } from 'react';
+import { View, Text, StyleSheet, ScrollView, Pressable, Linking, Alert } from 'react-native';
 
 const AboutScreen: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+
+  const handleEmailPress = useCallback(async () => {
+    const email = 'faraz.safdar@example.com';
+    const url = `mailto:${email}`;
+
+    try {
+      const supported = await Linking.canOpenURL(url);
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        Alert.alert('Unable to open mail app');
+      }
+    } catch {
+      Alert.alert('Unable to open mail app');
+    }
+  }, []);
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.card}>
@@ -47,11 +65,19 @@ const AboutScreen: React.FC = () => {
           <Text style={styles.feature}>• Clean and intuitive user interface</Text>
         </View>
 
-        {/* Footer — updated in this commit */}
+        {/* Footer — clickable email and dynamic year */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>Version 1.0.0</Text>
-          <Text style={styles.footerText}>© 2025 Group 10</Text>
-          <Text style={styles.footerNote}>Contact: faraz.safdar@example.com</Text>
+          <Text style={styles.footerText}>© {currentYear} Group 10</Text>
+
+          <Pressable
+            onPress={handleEmailPress}
+            accessibilityRole="link"
+            accessibilityLabel="Contact email"
+            style={({ pressed }) => [styles.footerLinkWrap, pressed && styles.pressed]}
+          >
+            <Text style={styles.footerLink}>Contact: faraz.safdar@example.com</Text>
+          </Pressable>
         </View>
       </View>
     </ScrollView>
@@ -102,7 +128,9 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   footerText: { fontSize: 13, color: '#777' },
-  footerNote: { fontSize: 12, color: '#999', marginTop: 4, fontStyle: 'italic' },
+  footerLinkWrap: { marginTop: 6 },
+  footerLink: { fontSize: 13, color: '#2196F3', textDecorationLine: 'underline' },
+  pressed: { opacity: 0.6 },
 });
 
 export default AboutScreen;
