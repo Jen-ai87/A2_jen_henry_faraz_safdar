@@ -36,5 +36,27 @@ const LabeledInput: React.FC<LabeledInputProps> = ({
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 16,
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 6,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 12,
+    fontSize: 16,
+    backgroundColor: '#fff',
+  },
+  inputDisabled: {
+    backgroundColor: '#f5f5f5',
+  },
+});
 
 export default LabeledInput;
