@@ -7,7 +7,7 @@ const AboutScreen: React.FC = () => {
       <View style={styles.content}>
         <View style={styles.card}>
           <Text style={styles.title}>Group 10</Text>
-
+          
           <View style={styles.infoRow}>
             <Text style={styles.label}>Name:</Text>
             <Text style={styles.value}>Jen Henry</Text>
@@ -19,7 +19,7 @@ const AboutScreen: React.FC = () => {
           </View>
 
           <View style={styles.divider} />
-
+          
           <View style={styles.infoRow}>
             <Text style={styles.label}>Name:</Text>
             <Text style={styles.value}>Faraz Safdar</Text>
@@ -29,7 +29,7 @@ const AboutScreen: React.FC = () => {
             <Text style={styles.label}>Student ID:</Text>
             <Text style={styles.value}>100775883</Text>
           </View>
-
+          
         </View>
 
         <View style={styles.card}>

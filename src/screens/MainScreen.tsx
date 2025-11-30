@@ -113,6 +113,7 @@ const MainScreen: React.FC<MainScreenProps> = ({navigation}) => {
     }
   };
 
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
@@ -182,7 +183,6 @@ const MainScreen: React.FC<MainScreenProps> = ({navigation}) => {
 
 
 };
-
 
 const styles = StyleSheet.create({
   container: {

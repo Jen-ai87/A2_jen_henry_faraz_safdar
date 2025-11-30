@@ -59,7 +59,7 @@ npm run android
 ### Node.js Version Issues
 If you encounter `styleText` errors:
 ```bash
-nvm use 20.18.1
+nvm use 20.19.4
 ```
 
 ### Clear Cache
